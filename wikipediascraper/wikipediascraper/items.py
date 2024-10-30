@@ -7,6 +7,7 @@ import scrapy
 
 
 class WikipediascraperItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    # define individual nodes/links within the scraper
+    parent_links = scrapy.Field()
+    current_link = scrapy.Field()
+    child_links = scrapy.Field()
