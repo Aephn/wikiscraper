@@ -9,12 +9,5 @@ from itemadapter import ItemAdapter
 
 
 class WikipediascraperPipeline:
-    def open_spider(self, spider):
-        pass # do nothing
-
-    def close_spider(self, spider):
-        pass # do nothing
-    
     def process_item(self, item, spider):
-
         return item

@@ -1,15 +1,2 @@
-# Compiled Bytecode / Python
-__pycache__/
-*.pyc
-*.pyo
-
-# virtualenv
 venv/
-.venv/
-env/
-
-# macOS
 .DS_Store
-
-# unused code storage
-unused.txt

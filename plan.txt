@@ -1,0 +1,26 @@
+Scrapy needs to recursively scrape web pages and then store the result
+so the values can be used to visualize a graph.
+- https://docs.scrapy.org/en/2.11/topics/practices.html
+
+The question becomes: How do we handle duplicates?
+- you would need to make some list of already-traversed links and only initiate
+a scrapy instance on child nodes that are in that list.
+
+- never_visited implementation?
+- Search up a way to determine duplicates easily and quickly.
+
+
+The format needs to include the following for each Link:
+Possibly could use namedtuple?
+
+(Parent Link, [Child1, Child2])
+- Use a scrapy item instead?
+
+The output can be pushed out by the pipeline.py file with 
+
+This then has to be processed by some graph framework that can read the File
+and then output a graph.
+
+d3.js -> https://d3js.org/
+
+Sigma.js -> https://www.sigmajs.org/storybook/?path=/story/csv-to-network-map--story
