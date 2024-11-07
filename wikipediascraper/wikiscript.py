@@ -11,5 +11,5 @@ process = CrawlerProcess(
     }
 )
 
-process.crawl(WikiSpider)
-process.start()  # the script will block here until the crawling is finished``
+process.crawl(WikiSpider, domain_list=["https://en.wikipedia.org/wiki/Main_Page"])
+process.start(stop_after_crawl=True)  # the script will block here until the crawling is finished

@@ -2,9 +2,8 @@ import scrapy
 
 class WikiSpider(scrapy.Spider):
     name = "wikispider"
-    start_urls = {
-        "https://en.wikipedia.org/wiki/Main_Page"
-    }
+    def __init__(self, domain_list: list = []):
+        self.start_urls = domain_list
 
     def parse(self, response):
         paths = []
