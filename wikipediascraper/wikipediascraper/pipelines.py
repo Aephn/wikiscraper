@@ -7,7 +7,9 @@
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
 
+class WikipediascraperPipeline(object):
+    def __init__(self):
+        pass
 
-class WikipediascraperPipeline:
     def process_item(self, item, spider):
-        return item
+        print(item)

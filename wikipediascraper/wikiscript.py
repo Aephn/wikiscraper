@@ -5,11 +5,14 @@ from scrapy.crawler import CrawlerProcess
 
 process = CrawlerProcess(
     settings={
-        "FEEDS": {
-            "items.json": {"format": "json"},
-        },
+        # "FEEDS": {"items.json": {"format": "json"},},
+        'USER_AGENT': 'scrapy',
+        'log_level': 'INFO',
+        'ITEM_PIPELINES': {'wikipediascraper.pipelines.WikipediascraperPipeline': 1},
     }
 )
 
-process.crawl(WikiSpider, domain_list=["https://en.wikipedia.org/wiki/Main_Page"])
+domains = ["https://en.wikipedia.org/wiki/Main_Page"]
+
+process.crawl(WikiSpider, domain_list=domains)
 process.start(stop_after_crawl=True)  # the script will block here until the crawling is finished
