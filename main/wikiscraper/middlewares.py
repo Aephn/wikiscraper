@@ -3,11 +3,35 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import scrapy
 from scrapy import signals
+from scrapy.exceptions import IgnoreRequest
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
 
+# NOTE: OUTDATED CUSTOM BFS DEPTH IMPLEMENTATION.
+# UNUSED.
+class BFSDepthMiddleware:
+    def __init__(self, max_depth):
+        self.max_depth = max_depth
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        max_depth = crawler.settings.getint('MAX_DEPTH')
+        s = cls(max_depth)
+        crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
+        return s
+    
+    def process_spider_output(self, response, result, spider):
+        for x in result:
+            if isinstance(x, scrapy.Request):
+                if x.meta.get('depth', 0) >= self.max_depth:
+                    raise IgnoreRequest(f"Maximum Depth Reached.")
+                yield x
+
+    def spider_opened(self, spider):
+        spider.logger.info(f"Spider opened (Max Depth:{self.max_depth}): {spider.name}")
 
 class WikipediascraperSpiderMiddleware:
     # Not all methods need to be defined. If a method is not defined,
@@ -54,7 +78,6 @@ class WikipediascraperSpiderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info("Spider opened: %s" % spider.name)
-
 
 class WikipediascraperDownloaderMiddleware:
     # Not all methods need to be defined. If a method is not defined,

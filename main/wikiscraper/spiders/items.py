@@ -6,7 +6,7 @@
 from scrapy import Item, Field
 
 class NodeItem(Item):
-    """Define Node Characteristic"""
+    """Define Node Item Characteristic"""
     parent_node = Field()
     node_url = Field()
     node_children = Field()

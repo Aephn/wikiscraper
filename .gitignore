@@ -1,14 +1,19 @@
-venv/
-env/
-
+# Compiled Bytecode / Python
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 *.swp
 
+# virtualenv
+venv/
+.venv/
+env/
+
+# macOS
 .DS_Store
 
-# personal files
-plan.txt
+# unused code storage
 unused.txt
+.DS_Store
+
