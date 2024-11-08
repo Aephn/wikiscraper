@@ -6,10 +6,17 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
+from pathlib import Path
+import logging
 
 class WikiscraperPipeline(object):
+    """
+    Defines the behavior for processing items yielded by the spider.
+    """
+
     def __init__(self):
-        pass
+        self.logger = logging.getLogger(__name__)
 
     def process_item(self, item, spider):
-        print("Hello!!!!")
+        self.logger.info(f"Processing item: {item}")
+        print(item)
